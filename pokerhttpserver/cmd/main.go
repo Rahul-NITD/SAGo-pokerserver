@@ -8,9 +8,7 @@ import (
 )
 
 func main() {
-	server := pokerhttpserver.PlayerServer{
-		Storage: pokerhttpserver.NewInMemoryStorage(),
-	}
 
-	log.Fatal(http.ListenAndServe(":8000", http.Handler(&server)))
+	server := pokerhttpserver.NewPlayerServer(pokerhttpserver.NewInMemoryStorage())
+	log.Fatal(http.ListenAndServe(":8000", http.Handler(server)))
 }
